@@ -1,0 +1,81 @@
+.quiz-container {
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  color: white;
+}
+
+.result {
+  margin-top: 20px;
+}
+
+.guess-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: black;
+  font-size: 14px; /* Adjust the font size for better readability */
+  line-height: 1.5; /* Add space between lines of text */
+}
+
+.guess-table th,
+.guess-table td {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+.guess-table th {
+  background-color: #435a58; /* Neon green color for header background */
+  color: white; /* Ensure header text color is white for better contrast */
+  font-size: 12px; /* Adjust font size for headers */
+  word-wrap: break-word; /* Prevent text from overflowing */
+}
+
+.correct {
+  background-color: green;
+  color: white;
+}
+
+.incorrect {
+  background-color: red;
+  color: white;
+}
+
+.semi-correct {
+  background-color: orange;
+  color: white;
+}
+
+.arrow-up::after {
+  content: "↑";
+  color: black;
+}
+
+.arrow-down::after {
+  content: "↓";
+  color: black;
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+img {
+  max-width: 150px; /* Adjust the maximum width of the thumbnail */
+  height: auto;
+}

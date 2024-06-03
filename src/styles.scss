@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  background: url('/assets/bg.png') no-repeat center center fixed;
+  background-size: cover;
+}

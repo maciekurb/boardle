@@ -1,0 +1,87 @@
+<div class="quiz-container">
+  <h1>Boardle</h1>
+
+  <!-- <div *ngIf="boardGame">
+    <p>Hint: {{ boardGame.yearPublished }}</p>
+    <p>Hint: {{ boardGame.category }}</p>
+    <p>Hint: {{ boardGame.mechanisms }}</p>
+  </div> -->
+
+  <mat-form-field>
+    <input matInput [formControl]="guessControl" [matAutocomplete]="auto" placeholder="Enter board game name">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredGames | async" [value]="option.name._attributes.value" (click)="onOptionSelected(option._attributes.id)">
+        {{ option.name._attributes.value }} {{ option.yearpublished._attributes.value }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <div *ngIf="loading" class="loader-overlay"></div>
+  <div *ngIf="loading" class="loader">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+
+  <div *ngIf="result" class="result">
+    <p>{{ result }}</p>
+  </div>
+
+  <table *ngIf="guesses.length > 0" class="guess-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Year Published</th>
+        <th>Categories</th>
+        <th>Mechanisms</th>
+        <th>Players</th>
+        <th>Playing time</th>
+        <th>Min Age</th>
+        <th>Designer</th>
+        <th>Weight</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guess of guesses">
+        <td><img [src]="guess.thumbnail" alt="thumbnail" /></td>
+        <td [ngClass]="guess.name === boardGame.name ? 'correct' : 'incorrect'">{{ guess.name }}</td>
+        <td [ngClass]="guess.yearPublished === boardGame.yearPublished ? 'correct' : 'incorrect'">
+          {{ guess.yearPublished }} 
+          <span *ngIf="guess.yearPublished != boardGame.yearPublished">
+            <span [ngClass]="{'arrow-down': guess.yearPublished > boardGame.yearPublished, 'arrow-up': guess.yearPublished < boardGame.yearPublished}">
+            </span>
+          </span>
+        </td>
+        <td [ngClass]="guess.categoriesRes">{{ guess.categories }}</td>
+        <td [ngClass]="guess.mechanismsRes">{{ guess.mechanisms }}</td>
+        <td [ngClass]="guess.playersRes">
+          {{ guess.minPlayers }}-{{ guess.maxPlayers }}
+        </td>
+        <td [ngClass]="guess.playingTime === boardGame.playingTime ? 'correct' : 'incorrect'">
+          {{ guess.playingTime }} 
+          <span *ngIf="guess.playingTime != boardGame.playingTime">
+            <span [ngClass]="{'arrow-down': guess.playingTime > boardGame.playingTime, 'arrow-up': guess.playingTime < boardGame.playingTime}">
+            </span>
+          </span>
+        </td>
+        <td [ngClass]="guess.minAge === boardGame.minAge ? 'correct' : 'incorrect'">
+          {{ guess.minAge }} 
+          <span *ngIf="guess.minAge != boardGame.minAge">
+            <span [ngClass]="{'arrow-down': guess.minAge > boardGame.minAge, 'arrow-up': guess.minAge < boardGame.minAge}">
+            </span>
+          </span>
+        </td>
+        <td [ngClass]="guess.boardGameDesigner === boardGame.boardGameDesigner ? 'correct' : 'incorrect'">{{ guess.boardGameDesigner }}</td>
+        <td [ngClass]="guess.averageWeight === boardGame.averageWeight ? 'correct' : 'incorrect'">
+          {{ guess.averageWeight }} 
+          <span *ngIf="guess.averageWeight != boardGame.averageWeight">
+            <span [ngClass]="{'arrow-down': guess.averageWeight > boardGame.averageWeight, 'arrow-up': guess.averageWeight < boardGame.averageWeight}">
+            </span>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+</div>
